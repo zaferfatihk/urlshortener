@@ -5,7 +5,7 @@ services:
     build: .
     container_name: urlshortener
     ports:
-      - "9090:9090"
+      - "9091:9090"
       #- "9229:9229" #debug port
     depends_on:
       - redis
