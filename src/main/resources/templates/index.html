@@ -1,97 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <style>
-        /* General Styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-        }
-
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        input[type="url"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #shortened-url {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: #28a745;
-            word-break: break-all;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>URL Shortener</h1>
-        <p>Enter a long URL to shorten it:</p>
-        <input type="url" id="long-url" placeholder="Enter your long URL here" required>
-        <br>
-        <button onclick="shortenURL()">Shorten URL</button>
-        <div id="shortened-url"></div>
-    </div>
-
-    <script>
-        function shortenURL() {
-            // Get the input URL
-            const longURL = document.getElementById('long-url').value;
-            const shortenedURLContainer = document.getElementById('shortened-url');
-            
-            if (!longURL) {
-                alert('Please enter a valid URL');
-                return;
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>URL Shortener</title>
+        <style>
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #f8f9fa;
             }
-
-            // Simulate short URL generation
-            const baseShortURL = "https://short.ly/";
-            const token = Math.random().toString(36).substring(2, 8); // Generate a random 6-character string
-            const shortenedURL = baseShortURL + token;
-
-            // Display the shortened URL
-            shortenedURLContainer.innerHTML = `Shortened URL: <a href="${shortenedURL}" target="_blank">${shortenedURL}</a>`;
-        }
-    </script>
+            .email {
+                font-size: 14px;
+                color: #333;
+            }
+        </style>
+    </head>
+<body>
+<div>
+    <div class="header">
+        <h1>URL Shortener</h1>
+        <div class="email">
+            <span th:text="${email}"></span>
+        </div>
+    </div>
+    
+    <form action="/" method="get">
+        Enter The URL
+        <input type="text"
+               name="name"
+               title="Type in url"/>
+        <input type="submit" name="Shorten URL"/>
+    </form> 
+</div>
 </body>
 </html>

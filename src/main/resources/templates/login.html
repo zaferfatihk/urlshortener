@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>URL Shortener User Login Page</title>
+        <script>
+            function toggleForms(userType) {
+                document.getElementById('loginForm').style.display = userType === 'existing' ? 'block' : 'none';
+                document.getElementById('registerForm').style.display = userType === 'new' ? 'block' : 'none';
+            }
+    
+            // Initialize the visibility based on the URL parameter
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const userType = urlParams.get('userType');
+                if (userType) {
+                    toggleForms(userType);
+                    document.getElementById(userType === 'existing' ? 'existingUser' : 'newUser').checked = true;
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <div>
+            <input type="radio" id="existingUser" name="userType" value="existing" onclick="toggleForms('existing')">
+            <label for="existingUser">Existing User</label>
+            <input type="radio" id="newUser" name="userType" value="new" onclick="toggleForms('new')">
+            <label for="newUser">New User</label>
+        </div>
+        <div id="loginForm" style="display:none;">
+            <form th:action="@{/login}" method="post">
+                <div><label> User Name : <input type="text" name="username"/> </label></div>
+                <div><label> Password: <input type="password" name="password"/> </label></div>
+                <div><input type="submit" value="Sign In"/></div>
+            </form>
+        </div>
+        <div id="registerForm" style="display:none;">
+            <form th:action="@{/register}" method="post">
+                <div><label> User Name : <input type="text" name="username"/> </label></div>
+                <div><label> Password: <input type="password" name="password"/> </label></div>
+                <div><input type="submit" value="Register"/></div>
+            </form>
+        </div>
+    </body>
+</html>
