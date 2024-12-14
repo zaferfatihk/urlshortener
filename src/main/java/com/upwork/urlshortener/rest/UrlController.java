@@ -30,6 +30,8 @@ public class UrlController {
                 .build();
         ((InMemoryUserDetailsManager) userDetailsService).createUser(user);
 
-        return new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("savedUser", true);
+        return modelAndView;
     } 
 }

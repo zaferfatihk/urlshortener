@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>URL Shortener User Login Page</title>
+        <meta charset="UTF-8">
+        <title>URL Shortener</title>
+        <style>
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #f8f9fa;
+            }
+            .email {
+                font-size: 14px;
+                color: #333;
+            }
+        </style>
         <script>
             function toggleForms(userType) {
                 document.getElementById('loginForm').style.display = userType === 'existing' ? 'block' : 'none';
@@ -20,8 +34,15 @@
         </script>
     </head>
     <body>
+        <div class="header">
+            <h1>Welcome to URL Shortener</h1>
+        </div>
+        <h3>Login / Sign Up</h3>
         <div th:if="${param.error}">
             Invalid username and password.
+        </div>
+        <div th:if="${savedUser}">
+            You succesfully created the user. Please login.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.

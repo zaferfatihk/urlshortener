@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <meta charset="UTF-8">
         <title>URL Shortener</title>
@@ -17,22 +18,27 @@
             }
         </style>
     </head>
-<body>
-<div>
-    <div class="header">
-        <h1>URL Shortener</h1>
-        <div class="email">
-            <span th:text="${email}"></span>
+    <body>
+        <div class="header">
+            <h1>URL Shortener</h1>
+            <div class="email">
+                <span th:text="${email}"></span>
+            </div>
         </div>
-    </div>
-    
-    <form action="/" method="get">
-        Enter The URL
-        <input type="text"
-               name="name"
-               title="Type in url"/>
-        <input type="submit" name="Shorten URL"/>
-    </form> 
-</div>
-</body>
+        <form action="/" method="get">
+            Enter The URL
+            <input type="text"
+                   name="name"
+                   title="Type in url"/>
+            <input type="submit" name="Shorten URL"/>
+        </form> 
+        <div style="height: 100px;"></div>
+        <div class="footer">
+            <p><hr></p>
+            <p th:inline="text">Logged in user <span th:remove="tag" sec:authentication="name">thymeleaf</span>.</p>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </body>
 </html>
