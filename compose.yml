@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  java-api:
+    build: .
+    container_name: urlshortener
+    ports:
+      - "8080:8080"
+      - "9229:9229" #debug port
+    depends_on:
+      - redis
+      - cassandra
+    environment:
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9229"  # Enable remote debugging
+      REDIS_HOST: "redis"
+      CASSANDRA_HOST: "cassandra"
+    networks:
+      - my-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - my-network
+
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
