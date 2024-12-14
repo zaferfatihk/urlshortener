@@ -30,5 +30,5 @@ This is a simple URL shortener service.
     docker compose up --build
     ```
 2. Open your browser and navigate to below links for usage.
-- Swagger: [http://localhost:8080/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
-- Open API: [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+- Swagger: [http://localhost:9090/swagger-ui/index.html#/](http://localhost:9090/swagger-ui/index.html#/)
+- Open API: [http://localhost:9090/api-docs](http://localhost:9090/api-docs)
