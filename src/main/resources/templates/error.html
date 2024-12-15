@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+    <head>
+        <meta charset="UTF-8">
+        <title>URL Shortener</title>
+        <style>
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #f8f9fa;
+            }
+            .email {
+                font-size: 14px;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h3>Error</h3>
+        </div>
+        <p th:inline="text">Error message:[<span th:text="${errorMessage}"></span>]</p>
+    </body>
+</html>

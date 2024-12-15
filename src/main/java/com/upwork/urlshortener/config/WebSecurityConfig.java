@@ -15,7 +15,7 @@ public class WebSecurityConfig {
 		http
 			.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 			.authorizeHttpRequests(requests -> requests
-				.requestMatchers("/login", "/register").permitAll()
+				.requestMatchers("/error", "/login", "/register", "/css/**", "/js/**").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin(form -> form

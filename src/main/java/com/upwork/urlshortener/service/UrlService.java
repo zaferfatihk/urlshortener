@@ -1,7 +1,6 @@
 package com.upwork.urlshortener.service;
 
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +17,13 @@ public class UrlService {
         this.urlRepository = urlRepository;
     }
 
+    @Value("${base.path}")
+    private String basePath;
+
+    public String getBasePath() {
+        return basePath;
+    }
+
     @Value("${url.expire.time}")
     private int urlExpireTime;
 
@@ -27,12 +33,13 @@ public class UrlService {
 
     public String getRandomString() {
         int length = 6;
-        String randomString = new Random().ints(48, 122).filter(i -> (i < 58 || i > 64) && (i < 91 || i > 96)).limit(length).collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+        String randomString = new Random()
+        .ints(48, 122) //These integers correspond to ASCII values.
+        .filter(i -> (i < 58 || i > 64) && (i < 91 || i > 96)) //ensures that only alphanumeric characters are included
+        .limit(length)
+        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+        .toString();
         return randomString;
-    }
-
-    public String decode(String encodedUrl) {
-        return new String(Base64.getUrlDecoder().decode(encodedUrl));
     }
 
     public Url save(Url urlEntity) {
@@ -42,5 +49,13 @@ public class UrlService {
     public LocalDateTime getExpiryDate(LocalDateTime timeNow) {
         LocalDateTime expiryDate = timeNow.plusMinutes(getUrlExpireTime());
         return expiryDate;
+    }
+
+    public Url findByShortName(String shortUrl) {
+        return urlRepository.findByShortName(shortUrl);
+    }
+
+    public boolean checkIfUrlExpired(Url url) {
+        return url.getExpiryDate().isBefore(LocalDateTime.now());
     }
 }

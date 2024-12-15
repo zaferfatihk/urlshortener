@@ -32,7 +32,12 @@
                    name="name"
                    title="Type in url"/>
             <input type="submit" name="Shorten URL"/>
-            <p th:if="${shortName}" th:inline="text">Short url:[http://localhost:8080/<span th:text="${shortName}"></span>]</p>
+            <p th:if="${shortName}" th:inline="text">
+                Short url generated. 
+                Please paste it into new browser window. 
+                Link is configured to live for 1 minute. 
+                Refresh browser after a minute to verify it gives an error. ->
+                http://localhost:8080/url/<span th:text="${shortName}"></span></p>
         </form> 
         <div style="height: 100px;"></div>
         <div class="footer">

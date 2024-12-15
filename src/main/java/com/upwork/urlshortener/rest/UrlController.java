@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.upwork.urlshortener.exception.URLExpiredException;
 import com.upwork.urlshortener.model.Url;
 import com.upwork.urlshortener.service.UrlService;
 
@@ -41,5 +44,16 @@ public class UrlController {
         modelAndView.addObject("shortName", shortName);
         return modelAndView;
     }
-    
+
+    @GetMapping("/url/{shortUrl}")
+    public ModelAndView shorten(@PathVariable("shortUrl") String shortUrl) {
+        Url url = urlService.findByShortName(shortUrl);
+
+        if(urlService.checkIfUrlExpired(url)) {
+            throw new URLExpiredException("URL has expired");
+        }
+
+        ModelAndView modelAndView = new ModelAndView("redirect:" + url.getLongName());
+        return modelAndView;
+    }
 }
