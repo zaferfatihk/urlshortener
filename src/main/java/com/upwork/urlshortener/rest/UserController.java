@@ -24,12 +24,17 @@ public class UserController {
 
     @PostMapping("/register")
     public ModelAndView register(@RequestParam("username") String username, @RequestParam("password") String password) {
-        if(username == null || username.isEmpty() || password == null || password.isEmpty()) {
+        if(username.isEmpty() || password.isEmpty()) {
             ModelAndView modelAndView = new ModelAndView("login");
             modelAndView.addObject("emptyUser", true);
             return modelAndView;
         }
 
+        //Since this is in memory User Details Manager,
+        //coming from Spring Security, it doesn't let us
+        //create a user with the same username
+        //therefore there is no need to check if the user exists
+        //error message will be shown by Spring Security.
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username(username)
                 .password(password)

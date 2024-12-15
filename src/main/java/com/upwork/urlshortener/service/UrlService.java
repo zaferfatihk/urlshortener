@@ -76,7 +76,7 @@ public class UrlService {
     }
 
     public LocalDateTime getExpiryDate(LocalDateTime timeNow) {
-        LocalDateTime expiryDate = timeNow.plusMinutes(getUrlExpireTime());
+        LocalDateTime expiryDate = timeNow.plusSeconds(getUrlExpireTime());
         return expiryDate;
     }
 
