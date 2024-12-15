@@ -43,6 +43,9 @@
         </div>
         <div th:if="${savedUser}">
             You succesfully created the user. Please login.
+        </div>        
+        <div th:if="${emptyUser}">
+            You are missing registration details. Please try again.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.

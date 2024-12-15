@@ -24,6 +24,12 @@ public class UserController {
 
     @PostMapping("/register")
     public ModelAndView register(@RequestParam("username") String username, @RequestParam("password") String password) {
+        if(username == null || username.isEmpty() || password == null || password.isEmpty()) {
+            ModelAndView modelAndView = new ModelAndView("login");
+            modelAndView.addObject("emptyUser", true);
+            return modelAndView;
+        }
+
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username(username)
                 .password(password)
@@ -33,6 +39,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("savedUser", true);
+        modelAndView.addObject("emptyUser", false);
         return modelAndView;
     } 
 
