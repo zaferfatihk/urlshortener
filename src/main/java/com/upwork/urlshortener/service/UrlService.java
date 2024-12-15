@@ -2,6 +2,8 @@ package com.upwork.urlshortener.service;
 
 import java.time.LocalDateTime;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,33 @@ public class UrlService {
 
     public int getUrlExpireTime() {
         return urlExpireTime;
+    }
+
+    public boolean isValidURL(String url) {
+        // Regex to check valid URL
+        String regex = "((http|https)://)(www.)?"
+              + "[a-zA-Z0-9@:%._\\+~#?&//=]"
+              + "{2,256}\\.[a-z]"
+              + "{2,6}\\b([-a-zA-Z0-9@:%"
+              + "._\\+~#?&//=]*)";
+ 
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+ 
+        // If the string is empty
+        // return false
+        if (url == null) {
+            return false;
+        }
+ 
+        // Find match between given string
+        // and regular expression
+        // using Pattern.matcher()
+        Matcher m = p.matcher(url);
+ 
+        // Return if the string
+        // matched the ReGex
+        return m.matches();
     }
 
     public String getRandomString() {

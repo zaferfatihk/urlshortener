@@ -5,16 +5,16 @@ services:
     build: .
     container_name: urlshortener
     ports:
-      - "8080:8080"
+      - "8081:8081"
       - "9229:9229" #debug port
     depends_on:
       - redis
-      - rdbms
+      - db
     # restart: unless-stopped
     environment:
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9229"  # Enable remote debugging
       REDIS_HOST: "redis"
-      SPRING_DATASOURCE_URL: jdbc:postgresql://rdbms:5432/upworkdatabase
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/upworkdatabase
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: secret
       SPRING_PROFILES_ACTIVE: "docker"
@@ -29,9 +29,8 @@ services:
     networks:
       - my-network
 
-  rdbms:
+  db:
     image: 'postgres:latest'
-    container_name: rdbms
     environment:
       - 'POSTGRES_DB=upworkdatabase'
       - 'POSTGRES_PASSWORD=secret'

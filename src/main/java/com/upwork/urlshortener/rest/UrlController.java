@@ -35,7 +35,11 @@ public class UrlController {
 
         if(urlService.urlExists(url)) {
             Url existingUrl = urlService.findByLongName(url);
-            throw new URLAlreadyExists("URL already exists in database. Please use the short link generated: " + urlService.getBasePath() + existingUrl.getShortName());
+            throw new URLAlreadyExists("URL already exists in database. Please use the short link generated: " + urlService.getBasePath() + "url/" + existingUrl.getShortName());
+        }
+
+        if(!urlService.isValidURL(url)) {
+            throw new Exception("Invalid character string entered. Does not match to an a valid website address.");
         }
 
         String createdBy = userService.getLoggedInUser();
