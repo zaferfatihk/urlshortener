@@ -8,4 +8,5 @@ import com.upwork.urlshortener.model.Url;
 @Repository
 public interface UrlRepository extends ListCrudRepository<Url, Long> {
     Url findByShortName(String shortName);
+    Url findByLongName(String longName);
 }

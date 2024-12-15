@@ -17,4 +17,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         modelAndView.addObject("errorMessage", ex.getMessage());
         return modelAndView;
     }
+    
+    @ExceptionHandler(URLAlreadyExists.class)
+    protected ModelAndView handleSaveExistingURL(URLAlreadyExists ex) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errorMessage", ex.getMessage());
+        return modelAndView;
+    }
 }

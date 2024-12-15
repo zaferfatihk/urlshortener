@@ -29,7 +29,7 @@
             <div th:insert="~{base :: csrf-token}"></div>
             Enter The URL
             <input type="text"
-                   name="name"
+                   name="url"
                    title="Type in url"/>
             <input type="submit" name="Shorten URL"/>
             <p th:if="${shortName}" th:inline="text">
@@ -37,7 +37,7 @@
                 Please paste it into new browser window. 
                 Link is configured to live for 1 minute. 
                 Refresh browser after a minute to verify it gives an error. ->
-                http://localhost:8080/url/<span th:text="${shortName}"></span></p>
+                http://localhost:8080/url/<span th:text="${shortName}"></span></p>                
         </form> 
         <div style="height: 100px;"></div>
         <div class="footer">

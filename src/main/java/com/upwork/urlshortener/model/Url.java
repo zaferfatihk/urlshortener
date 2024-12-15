@@ -22,8 +22,17 @@ public class Url{
 
     private String longName;
     private String shortName;
-    private String createBy;
-    private LocalDateTime createDate;
+    private String createdBy;
+    private LocalDateTime createdDate;
     private LocalDateTime expiryDate;
 
+    public static Url create(String longName, String shortName, String createdBy, LocalDateTime createDate, LocalDateTime expiryDate) {
+        Url url = new Url();
+        url.setLongName(longName);
+        url.setShortName(shortName);
+        url.setCreatedBy(createdBy);
+        url.setCreatedDate(createDate);
+        url.setExpiryDate(expiryDate);
+        return url;
+    }
 }

@@ -58,4 +58,12 @@ public class UrlService {
     public boolean checkIfUrlExpired(Url url) {
         return url.getExpiryDate().isBefore(LocalDateTime.now());
     }
+
+    public boolean urlExists(String url) {
+        return urlRepository.findByLongName(url) != null;
+    }
+
+    public Url findByLongName(String longName) {
+        return urlRepository.findByLongName(longName);
+    }
 }
