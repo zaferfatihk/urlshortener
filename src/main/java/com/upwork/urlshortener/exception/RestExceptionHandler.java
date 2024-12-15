@@ -24,4 +24,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         modelAndView.addObject("errorMessage", ex.getMessage());
         return modelAndView;
     }
+
+    @ExceptionHandler(Exception.class)
+    protected ModelAndView handleOtherExceptions(Exception ex) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("errorMessage", ex.getMessage());
+        return modelAndView;
+    }
 }

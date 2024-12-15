@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ public class Url{
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
+    @NotEmpty(message = "User sent an empty URL string.")
     private String longName;
     private String shortName;
     private String createdBy;
