@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
     <head>
         <meta charset="UTF-8">
         <title>URL Shortener</title>
@@ -25,7 +25,8 @@
                 <span th:text="${email}"></span>
             </div>
         </div>
-        <form action="/" method="get">
+        <form th:action="@{/url}" method="post">
+            <div th:insert="~{base :: csrf-token}"></div>
             Enter The URL
             <input type="text"
                    name="name"
@@ -37,6 +38,7 @@
             <p><hr></p>
             <p th:inline="text">Logged in user <span th:remove="tag" sec:authentication="name">thymeleaf</span>.</p>
             <form th:action="@{/logout}" method="post">
+                <div th:insert="~{base :: csrf-token}"></div>
                 <input type="submit" value="Sign Out"/>
             </form>
         </div>

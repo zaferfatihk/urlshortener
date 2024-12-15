@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
     <head>
         <meta charset="UTF-8">
         <title>URL Shortener</title>
@@ -55,6 +55,7 @@
         </div>
         <div id="loginForm" style="display:none;">
             <form th:action="@{/login}" method="post">
+                <div th:insert="~{base :: csrf-token}"></div>
                 <div><label> User Name : <input type="text" name="username"/> </label></div>
                 <div><label> Password: <input type="password" name="password"/> </label></div>
                 <div><input type="submit" value="Sign In"/></div>
@@ -62,6 +63,7 @@
         </div>
         <div id="registerForm" style="display:none;">
             <form th:action="@{/register}" method="post">
+                <div th:insert="~{base :: csrf-token}"></div>
                 <div><label> User Name : <input type="text" name="username"/> </label></div>
                 <div><label> Password: <input type="password" name="password"/> </label></div>
                 <div><input type="submit" value="Register"/></div>
