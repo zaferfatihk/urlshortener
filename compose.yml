@@ -5,15 +5,19 @@ services:
     build: .
     container_name: urlshortener
     ports:
-      - "9091:9090"
+      - "8080:8080"
       #- "9229:9229" #debug port
     depends_on:
       - redis
-      - cassandra
+      - rdbms
+    # restart: unless-stopped
     environment:
       #JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9229"  # Enable remote debugging
       REDIS_HOST: "redis"
-      CASSANDRA_HOST: "cassandra"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://rdbms:5432/upworkdatabase
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_PROFILES_ACTIVE: "docker"
     networks:
       - my-network
 
@@ -25,13 +29,17 @@ services:
     networks:
       - my-network
 
-  cassandra:
-    image: cassandra:latest
-    container_name: cassandra
+  rdbms:
+    image: 'postgres:latest'
+    container_name: rdbms
+    environment:
+      - 'POSTGRES_DB=upworkdatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=myuser'
     ports:
-      - "9042:9042"
+      - '5432:5432'
     networks:
-      - my-network
+      - my-network  
 
 networks:
   my-network:

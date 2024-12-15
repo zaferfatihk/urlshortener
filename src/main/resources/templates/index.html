@@ -32,6 +32,7 @@
                    name="name"
                    title="Type in url"/>
             <input type="submit" name="Shorten URL"/>
+            <p th:if="${shortName}" th:inline="text">Short url:[http://localhost:8080/<span th:text="${shortName}"></span>]</p>
         </form> 
         <div style="height: 100px;"></div>
         <div class="footer">

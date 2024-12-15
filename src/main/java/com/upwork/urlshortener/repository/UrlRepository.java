@@ -1,5 +1,11 @@
 package com.upwork.urlshortener.repository;
 
-public class UrlRepository {
+import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.upwork.urlshortener.model.Url;
+
+@Repository
+public interface UrlRepository extends ListCrudRepository<Url, Long> {
     
 }
