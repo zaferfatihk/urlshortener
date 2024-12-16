@@ -3,9 +3,12 @@
 This is a simple URL shortener service.
 
 ## Features
-
+- In memory account management with Spring Security
 - Shorten long URLs
 - Redirect to original URLs
+- Set and check expiry time for URLs
+    - Default expiry time for the URL is 60 seconds. 
+- Validations
 
 ## Installation
 
