@@ -9,6 +9,7 @@ This is a simple URL shortener service.
 - Set and check expiry time for URLs
     - Default expiry time for the URL is 60 seconds. 
 - Validations
+- UI with thymeleaf
 
 ## Prereq before installation
 Please make sure below are installed on your system.
