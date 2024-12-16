@@ -10,6 +10,12 @@ This is a simple URL shortener service.
     - Default expiry time for the URL is 60 seconds. 
 - Validations
 
+## Prereq before installation
+Please make sure below are installed on your system.
+1. Git
+2. Docker support
+3. Maven
+
 ## Installation
 
 1. Clone the repository:
@@ -32,7 +38,7 @@ This is a simple URL shortener service.
     mvn clean install -DskipTests
     docker compose up --build
     ```
-2. Alternatively you can run the application via
+2. Alternatively you can start the server with
     ```sh
     mvn clean install spring-boot:run
     ```
