@@ -2,7 +2,7 @@
 
 This is a simple URL shortener service.
 
-## Features
+## Features and requirements
 - In memory account management with Spring Security
 - Shorten long URLs
 - Redirect to original URLs
@@ -10,6 +10,7 @@ This is a simple URL shortener service.
     - Default expiry time for the URL is 60 seconds. 
 - Validations
 - UI with thymeleaf
+- Test cov. %100
 
 ## Prereq before installation
 Please make sure below are installed on your system.
