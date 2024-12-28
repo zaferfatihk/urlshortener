@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-api
-          image: urlshortener
+          image: your-java-api-image
           ports:
             - containerPort: 8081
             - containerPort: 9229
@@ -47,9 +47,11 @@ spec:
   selector:
     app: java-api
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 8081
       targetPort: 8081
-    - protocol: TCP
+    - name: debug
+      protocol: TCP
       port: 9229
       targetPort: 9229
