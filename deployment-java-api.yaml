@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-api
+  template:
+    metadata:
+      labels:
+        app: java-api
+    spec:
+      containers:
+        - name: java-api
+          image: urlshortener
+          ports:
+            - containerPort: 8081
+            - containerPort: 9229
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9229"
+            - name: REDIS_HOST
+              value: "redis"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://db:5432/upworkdatabase"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "myuser"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "secret"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-api
+spec:
+  selector:
+    app: java-api
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+    - protocol: TCP
+      port: 9229
+      targetPort: 9229
