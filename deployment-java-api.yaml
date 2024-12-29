@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-api
-          image: $(params.IMAGE_NAME)
+          image: image-registry.openshift-image-registry.svc:5000/zaferfatih-dev/urlshortener-git
           ports:
             - containerPort: 8081
             - containerPort: 9229
