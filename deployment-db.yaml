@@ -12,12 +12,13 @@ spec:
       labels:
         app: db
     spec:
+      securityContext:
+        fsGroup: 0
       containers:
         - name: db
           image: postgres:latest
           securityContext:
             runAsUser: 0
-            fsGroup: 0
           resources:
             limits:
               memory: "512Mi"
