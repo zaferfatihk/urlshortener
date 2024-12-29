@@ -37,7 +37,7 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: "secret"
             - name: SPRING_PROFILES_ACTIVE
-              value: "docker"
+              value: "prod"
 ---
 apiVersion: v1
 kind: Service
