@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-api
-          image: your-java-api-image
+          image: $(params.IMAGE_NAME)
           ports:
             - containerPort: 8081
             - containerPort: 9229
