@@ -44,11 +44,11 @@ Please make sure below are installed on your system.
     ```sh
     mvn clean install spring-boot:run
     ```
-3. To test the app go to http://localhost:8081/
+3. To test the app go to https://java-api-zaferfatih-dev.apps.rm2.thpm.p1.openshiftapps.com/
     - Register a new user
     - Login with the registered user
     - Enter url to shorten
     - User shortened URL for the timespan of 60 seconds
 3. Open your browser and navigate to below link for the spec.
     
-    - Open API: [http://localhost:8081/api-docs]
+    - Open API: [https://java-api-zaferfatih-dev.apps.rm2.thpm.p1.openshiftapps.com/api-docs]

@@ -8,4 +8,4 @@ WORKDIR /app
 COPY target/urlshortener-0.0.1-SNAPSHOT.jar app.jar
 
 # Command to run the application
-CMD ["java", "-jar", "app.jar", "--spring.profiles.active=docker"]
+CMD ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]
