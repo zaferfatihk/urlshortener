@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: java-api
+spec:
+  to:
+    kind: Service
+    name: java-api
+  port:
+    targetPort: http
+  tls:
+    termination: edge
